@@ -23,12 +23,16 @@ const bonusSchema = new Schema(
       type: Number,
       required: [true, 'Set bonus'],
     },
+    weight: {
+      type: Number,
+      required: [true, 'Set weight'],
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false }
 );
 
 bonusSchema.post('save', (err, data, next) => {
@@ -56,6 +60,10 @@ const addSchema = Joi.object({
   bonus: Joi.number().messages({
     'string.empty': 'field must contain "bonus"',
     'any.required': 'missing required "bonus" field',
+  }),
+  weight: Joi.number().messages({
+    'string.empty': 'field must contain "weight"',
+    'any.required': 'missing required "weight" field',
   }),
 });
 

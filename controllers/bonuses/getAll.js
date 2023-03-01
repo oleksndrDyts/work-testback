@@ -3,12 +3,7 @@ const { formatDate } = require('../../helpers');
 
 const getAll = async (req, res) => {
   const { _id: owner } = req.user;
-
-  const date = req.query.date
-    ? req.query.date.slice(3)
-    : formatDate(Date.now());
-  // console.log();
-
+  console.log(owner);
   const result = await Bonus.find({
     owner,
     // 'dateData.date': `${date}`,
